@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dotaciones Ciro Ciro</title>
+<style>
+  :root{
+    --bg:#FAF6EE;
+    --paper:#FFFFFF;
+    --ink:#2B2420;
+    --muted:#8A7B6C;
+    --line:#E7DFD2;
+    --accent:#1B4B7A;
+    --accent-dark:#123A5E;
+    --gold:#D4A017;
+    --flag-red:#C23B3B;
+    --whatsapp:#25D366;
+    --whatsapp-dark:#1DA851;
+    --radius:16px;
+    --shadow: 0 6px 18px rgba(43,36,32,0.10);
+    --font-display: Georgia, 'Times New Roman', serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+  button{ font-family:inherit; cursor:pointer; }
+  .hidden{ display:none !important; }
+
+  /* ---------- Encabezado ---------- */
+  #siteHeader{
+    text-align:center;
+    padding:56px 20px 40px;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(154,59,59,0.06), transparent 55%),
+      radial-gradient(circle at 80% 0%, rgba(201,162,39,0.08), transparent 50%);
+    border-bottom:1px solid var(--line);
+  }
+  #siteHeader .emoji{
+    font-size:52px;
+    line-height:1;
+    margin-bottom:10px;
+  }
+  #siteHeader h1{
+    font-family:var(--font-display);
+    font-size:clamp(28px,7vw,42px);
+    margin:0 0 8px;
+    letter-spacing:0.3px;
+  }
+  #siteHeader p.eslogan{
+    margin:0;
+    color:var(--muted);
+    font-size:16px;
+    font-style:italic;
+  }
+
+  /* ---------- Secciones ---------- */
+  section{ padding:36px 20px; max-width:900px; margin:0 auto; }
+  .section-title{
+    font-family:var(--font-display);
+    font-size:24px;
+    margin:0 0 18px;
+    text-align:center;
+    position:relative;
+  }
+  .section-title::after{
+    content:"";
+    display:block;
+    width:44px; height:3px;
+    background:var(--gold);
+    margin:10px auto 0;
+    border-radius:3px;
+  }
+  #aboutSection p{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto;
+    color:#4a4038;
+  }
+
+  /* ---------- Catálogo tipo etiqueta ---------- */
+  #catalogGrid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:20px;
+    margin-top:8px;
+  }
+  @media (min-width: 640px){
+    #catalogGrid{ grid-template-columns: 1fr 1fr; }
+  }
+  .product-card{
+    background:var(--paper);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:20px;
+    position:relative;
+    border:1px dashed var(--line);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .product-card:hover{ transform:translateY(-3px); box-shadow:0 10px 24px rgba(43,36,32,0.14); }
+  .product-card::before{
+    content:"";
+    position:absolute;
+    top:-8px; left:24px;
+    width:16px; height:16px;
+    background:var(--bg);
+    border:1px dashed var(--line);
+    border-radius:50%;
+  }
+  .product-card::after{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:5px;
+    background:linear-gradient(90deg, var(--accent) 0 34%, var(--gold) 34% 67%, var(--flag-red) 67% 100%);
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .product-image{
+    font-size:40px;
+    width:64px; height:64px;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--bg);
+    border-radius:12px;
+    margin-bottom:14px;
+    overflow:hidden;
+  }
+  .product-image img{ width:100%; height:100%; object-fit:cover; border-radius:12px; }
+  .product-card h3{
+    font-family:var(--font-display);
+    margin:0 0 4px;
+    font-size:19px;
+  }
+  .product-price{
+    display:inline-block;
+    color:var(--accent-dark);
+    font-weight:700;
+    font-size:16px;
+    margin-bottom:8px;
+  }
+  .product-cat{
+    display:inline-block;
+    font-size:11px;
+    letter-spacing:0.4px;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:700;
+    margin-left:8px;
+  }
+  .product-desc{
+    color:var(--muted);
+    font-size:14px;
+    margin:0 0 14px;
+  }
+  .btn{
+    display:inline-block;
+    border:none;
+    border-radius:10px;
+    padding:12px 16px;
+    font-size:15px;
+    font-weight:600;
+    text-align:center;
+    text-decoration:none;
+    transition:background .15s ease, transform .1s ease;
+  }
+  .btn:active{ transform:scale(0.98); }
+  .btn-whatsapp{
+    background:var(--whatsapp);
+    color:#fff;
+    width:100%;
+  }
+  .btn-whatsapp:hover{ background:var(--whatsapp-dark); }
+  .btn-outline{
+    background:transparent;
+    border:1.5px solid var(--ink);
+    color:var(--ink);
+  }
+  .card-admin-row{
+    display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;
+  }
+  .card-admin-row button{
+    flex:1;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:8px;
+    font-size:13px;
+  }
+  .card-admin-row button:hover{ background:#f0e9db; }
+
+  /* ---------- Contacto ---------- */
+  #contactSection{ text-align:center; }
+  .contact-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    max-width:340px;
+    margin:0 auto;
+  }
+  @media (min-width:480px){
+    .contact-buttons{ flex-direction:row; max-width:none; justify-content:center; }
+    .contact-buttons .btn{ min-width:160px; }
+  }
+
+  /* ---------- Footer ---------- */
+  #siteFooter{
+    text-align:center;
+    padding:24px 20px 40px;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  /* ---------- Botón flotante editar ---------- */
+  #editToggleBtn{
+    position:fixed;
+    bottom:18px; right:18px;
+    z-index:500;
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    border-radius:999px;
+    padding:12px 18px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.25);
+    font-size:14px;
+    font-weight:600;
+  }
+  #editToggleBtn.active{ background:var(--accent); }
+
+  /* ---------- Panel de edición ---------- */
+  #editPanel{
+    position:fixed;
+    inset:0;
+    background:rgba(20,16,14,0.5);
+    z-index:600;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+  }
+  #editPanel .panel-inner{
+    background:var(--paper);
+    width:100%;
+    max-width:560px;
+    max-height:92vh;
+    overflow-y:auto;
+    border-radius:20px 20px 0 0;
+    padding:20px 20px 32px;
+  }
+  @media (min-width:640px){
+    #editPanel{ align-items:center; }
+    #editPanel .panel-inner{ border-radius:20px; max-height:88vh; }
+  }
+  .panel-header{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:12px;
+  }
+  .panel-header h2{ font-family:var(--font-display); font-size:20px; margin:0; }
+  #closeEditPanel{
+    background:none; border:none; font-size:22px; color:var(--muted);
+  }
+  .edit-tabs{ display:flex; gap:6px; margin-bottom:16px; }
+  .edit-tab-btn{
+    flex:1;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:10px;
+    font-size:13px;
+    font-weight:600;
+  }
+  .edit-tab-btn.active{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  .tab-panel{ display:none; }
+  .tab-panel.active{ display:block; }
+
+  .field{ margin-bottom:14px; }
+  .field label{
+    display:block; font-size:13px; font-weight:600; margin-bottom:5px; color:#4a4038;
+  }
+  .field input, .field textarea{
+    width:100%;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    font-size:14px;
+    font-family:inherit;
+    background:#fff;
+  }
+  .field textarea{ resize:vertical; min-height:70px; }
+  .field small{ color:var(--muted); font-size:12px; }
+  .field-color{ display:flex; align-items:center; gap:10px; }
+  .field-color input[type=color]{ width:44px; height:36px; padding:0; border:none; }
+
+  #productsAdminList{ margin:14px 0; display:flex; flex-direction:column; gap:10px; }
+  .admin-product-row{
+    display:flex; align-items:center; gap:10px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:10px;
+  }
+  .admin-product-row .info{ flex:1; min-width:0; }
+  .admin-product-row .info strong{ display:block; font-size:14px; }
+  .admin-product-row .info span{ font-size:12px; color:var(--muted); }
+  .admin-product-row .row-actions{ display:flex; gap:4px; }
+  .admin-product-row .row-actions button{
+    border:1px solid var(--line);
+    background:var(--bg);
+    border-radius:6px;
+    width:30px; height:30px;
+    font-size:14px;
+  }
+
+  .primary-action{
+    background:var(--accent);
+    color:#fff;
+    width:100%;
+    margin-top:6px;
+  }
+  .primary-action:hover{ background:var(--accent-dark); }
+
+  .action-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+    margin-top:18px;
+  }
+  @media (min-width:480px){ .action-grid{ grid-template-columns:1fr 1fr; } }
+  .action-grid .btn-outline{ font-size:14px; padding:10px; }
+
+  #instructionsBox{
+    margin-top:20px;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 16px;
+    font-size:13.5px;
+  }
+  #instructionsBox h3{ margin:0 0 8px; font-family:var(--font-display); font-size:16px; }
+  #instructionsBox ol{ margin:0 0 10px; padding-left:20px; }
+  #instructionsBox li{ margin-bottom:6px; }
+  #instructionsBox .note{ color:var(--muted); font-style:italic; }
+
+  #formMsg{
+    font-size:13px; margin-top:6px; min-height:18px;
+  }
+  #formMsg.error{ color:var(--accent); }
+  #formMsg.ok{ color:#2e7d46; }
+
+  /* ---------- Modal producto ---------- */
+  #productModal{
+    position:fixed; inset:0; background:rgba(20,16,14,0.55);
+    z-index:700; display:flex; align-items:center; justify-content:center; padding:16px;
+  }
+  #productModal .modal-inner{
+    background:#fff; border-radius:16px; padding:20px; width:100%; max-width:420px;
+    max-height:90vh; overflow-y:auto;
+  }
+  #productModal h3{ font-family:var(--font-display); margin:0 0 14px; }
+
+  #importFileInput{ display:none; }
+</style>
+</head>
+<body>
+<div id="publicView">
+  <header id="siteHeader"><div class="emoji">👔</div><h1>Dotaciones Ciro Ciro</h1><p class="eslogan">Confort, estilo, distinción y calidad</p></header>
+  <section id="aboutSection">
+    <h2 class="section-title">Sobre nosotros</h2>
+    <div id="aboutContent"><p>Vendemos uniformes empresariales, colegiales, universitarios, y para restaurantes, hoteles, clínicas, peluquerías, empresas privadas y públicas, y todo aquel que requiera uniformes. Nos diferencian el cumplimiento en la entrega y el uso de telas ecológicas.</p></div>
+  </section>
+  <section id="catalogSection">
+    <h2 class="section-title">Catálogo</h2>
+    <div id="catalogGrid"><div class="product-card"><div class="product-image">👕</div><h3>Suéter tipo polo</h3><div><span class="product-price">$45.000</span><span class="product-cat">Uniformes</span></div><p class="product-desc">Suéter polo institucional, cómodo y resistente, ideal para uniformes empresariales y colegiales.</p><a class="btn btn-whatsapp" href="mailto:marcellalcd254@gmail.com?subject=Pedido%3A%20Su%C3%A9ter%20tipo%20polo&amp;body=%C2%A1Hola!%20Quiero%20pedir%3A%20Su%C3%A9ter%20tipo%20polo">Pedir por correo</a></div><div class="product-card"><div class="product-image"><img src="https://dotacionesyuniformes.co/wp-content/uploads/2022/06/dotaciones-y-uniformes-cydp-oxford-dama-amarillo.jpg" alt="Camisa manga larga"></div><h3>Camisa manga larga</h3><div><span class="product-price">$78</span><span class="product-cat">Uniformes</span></div><p class="product-desc">Camisa resistente para uso diario en empresas, telas fayette para restaurantes , hoteles, universidades ,colegios en tela ecológica. no necesita planchado y no se decoloran ,no se motosean</p><a class="btn btn-whatsapp" href="mailto:marcellalcd254@gmail.com?subject=Pedido%3A%20Camisa%20manga%20larga&amp;body=%C2%A1Hola!%20Quiero%20pedir%3A%20Camisa%20manga%20larga">Pedir por correo</a></div><div class="product-card"><div class="product-image">👔</div><h3>Camisa administrativa</h3><div><span class="product-price">$55.000</span><span class="product-cat">Uniformes</span></div><p class="product-desc">Camisa formal para personal administrativo, con acabado elegante y duradero.</p><a class="btn btn-whatsapp" href="mailto:marcellalcd254@gmail.com?subject=Pedido%3A%20Camisa%20administrativa&amp;body=%C2%A1Hola!%20Quiero%20pedir%3A%20Camisa%20administrativa">Pedir por correo</a></div><div class="product-card"><div class="product-image"><img src="https://estampadosiberika.com.co/wp-content/uploads/2025/02/Camisa-hombre-perzonalizada.webp" alt="Suéter tipo shirt"></div><h3>Suéter tipo shirt</h3><div><span class="product-price">$25</span><span class="product-cat">Uniformes</span></div><p class="product-desc">Suéter tipo shirt para uso institucional, disponible en varios colores corporativos. estampado o bordado personalizado</p><a class="btn btn-whatsapp" href="mailto:marcellalcd254@gmail.com?subject=Pedido%3A%20Su%C3%A9ter%20tipo%20shirt&amp;body=%C2%A1Hola!%20Quiero%20pedir%3A%20Su%C3%A9ter%20tipo%20shirt">Pedir por correo</a></div><div class="product-card"><div class="product-image"><img src="https://dotacionesyuniformes.co/wp-content/uploads/2019/05/dotaciones-y-uniformes-cydp-dotaci%C3%B3n-adulto-camiseta-empresarial.jpg" alt="sueter tipo polo"></div><h3>sueter tipo polo</h3><div><span class="product-price">$50</span><span class="product-cat">sueter empresarial,colegial,universidades</span></div><p class="product-desc">sueter hecho en telas de la fayette en excelente calidad ,con proteccion solar ,no se decolora,no se motosea y permite conford y elegancia</p><a class="btn btn-whatsapp" href="mailto:marcellalcd254@gmail.com?subject=Pedido%3A%20sueter%20tipo%20polo&amp;body=%C2%A1Hola!%20Quiero%20pedir%3A%20sueter%20tipo%20polo">Pedir por correo</a></div></div>
+  </section>
+  <section id="contactSection">
+    <h2 class="section-title">Contáctanos</h2>
+    <div id="contactButtons" class="contact-buttons"><a class="btn btn-outline" href="mailto:marcellalcd254@gmail.com">✉️ Correo</a></div>
+  </section>
+  <footer id="siteFooter">© 2026 Dotaciones Ciro Ciro · Santa Marta · Hecho con 💛</footer>
+</div>
+<script id="datos" type="application/json">{"negocio":{"nombre":"Dotaciones Ciro Ciro","eslogan":"Confort, estilo, distinción y calidad","descripcion":"Vendemos uniformes empresariales, colegiales, universitarios, y para restaurantes, hoteles, clínicas, peluquerías, empresas privadas y públicas, y todo aquel que requiera uniformes. Nos diferencian el cumplimiento en la entrega y el uso de telas ecológicas.","emoji":"👔","accent":"#1B4B7A","whatsapp":"","instagram":"","correo":"marcellalcd254@gmail.com","ciudad":"Santa Marta"},"productos":[{"id":1,"nombre":"Suéter tipo polo","precio":45000,"descripcion":"Suéter polo institucional, cómodo y resistente, ideal para uniformes empresariales y colegiales.","imagen":"👕","categoria":"Uniformes"},{"id":2,"nombre":"Camisa manga larga","precio":78,"descripcion":"Camisa resistente para uso diario en empresas, telas fayette para restaurantes , hoteles, universidades ,colegios en tela ecológica. no necesita planchado y no se decoloran ,no se motosean","imagen":"https://dotacionesyuniformes.co/wp-content/uploads/2022/06/dotaciones-y-uniformes-cydp-oxford-dama-amarillo.jpg","categoria":"Uniformes"},{"id":3,"nombre":"Camisa administrativa","precio":55000,"descripcion":"Camisa formal para personal administrativo, con acabado elegante y duradero.","imagen":"👔","categoria":"Uniformes"},{"id":4,"nombre":"Suéter tipo shirt","precio":25,"descripcion":"Suéter tipo shirt para uso institucional, disponible en varios colores corporativos. estampado o bordado personalizado","imagen":"https://estampadosiberika.com.co/wp-content/uploads/2025/02/Camisa-hombre-perzonalizada.webp","categoria":"Uniformes"},{"nombre":"sueter tipo polo","precio":50,"descripcion":"sueter hecho en telas de la fayette en excelente calidad ,con proteccion solar ,no se decolora,no se motosea y permite conford y elegancia","imagen":"https://dotacionesyuniformes.co/wp-content/uploads/2019/05/dotaciones-y-uniformes-cydp-dotaci%C3%B3n-adulto-camiseta-empresarial.jpg","categoria":"sueter empresarial,colegial,universidades","id":5}]}</script>
+</body>
+</html>
